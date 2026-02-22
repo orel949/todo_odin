@@ -13,7 +13,7 @@ function verifierTacheJour()
     }
     for (let i=0;i<homeTasks.length;i++)
     {
-        if (homeTasks[i].date===today && !todayTasks.includes(homeTasks[i]))
+        if (homeTasks[i].date===today && !todayTasks.some(t => t.id === homeTasks[i].id))
         {
             todayTasks.push(homeTasks[i]);
         }
