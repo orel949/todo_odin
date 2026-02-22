@@ -1,14 +1,21 @@
-import { sauvegarderTaches, todayTasks } from "./index.js";
+import { homeTasks, sauvegarderTaches, todayTasks } from "./index.js";
 
 
 function verifierTacheJour()
 {
     const today = new Date().toISOString().split("T")[0];
-    for (let i=0;i<todayTasks.length;i++)
+    for (let i=todayTasks.length-1;i>=0;i--)
     {
         if (!(todayTasks[i].date===today))
         {
             todayTasks.splice(i,1);
+        }
+    }
+    for (let i=0;i<homeTasks.length;i++)
+    {
+        if (homeTasks[i].date===today && !todayTasks.includes(homeTasks[i]))
+        {
+            todayTasks.push(homeTasks[i]);
         }
     }
     sauvegarderTaches();
